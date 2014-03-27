@@ -6,6 +6,7 @@ import java.util.ArrayList;
 /**Classe che simula lo stato. Derivata dall'Entita, aggiunge il booleano bancarotta.
  * Fornisce i metodi tassa e servi per interagire coi cittadini. 
  *
+ * 
  * @author etrunon
  */
 public class Stato extends Entita{
