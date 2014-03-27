@@ -103,7 +103,7 @@ public class Cittadino extends Entita {
         {
             int indice;
             do{ //Sparo a caso su tutta la popolazione fino a quando non trovo un cittadino diverso da me e vivo.
-                indice = (int)(random()*100.0)%popolazione.size();
+                indice = (int)(random()*((double) popolazione.size()));
             }while (indice==this.id || popolazione.get(indice).morto==true);
 
             sommaTempo(-1);
@@ -128,8 +128,8 @@ public class Cittadino extends Entita {
         {
             int indice;
             do{
-                indice = (int)(random()*100.0)%aziende.size();
-            }while (indice==this.id || aziende.get(indice).fallita==true);
+                indice = (int)(random()*((double)aziende.size()));
+            }while (aziende.get(indice).fallita==true);
 
             sommaTempo(-1);
             sommaFelicità(-2);

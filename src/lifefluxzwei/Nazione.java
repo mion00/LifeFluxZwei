@@ -33,7 +33,7 @@ public class Nazione {
     public Nazione()
     {
         //***********Costruisco la popolazione ************
-        numPopolazione = 100;
+        numPopolazione = 1000000;
         popolazione = new ArrayList<>();
         
         for(int i=0; i<=numPopolazione; i++)
