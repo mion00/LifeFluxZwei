@@ -19,10 +19,14 @@ public class Nazione {
     /**ArrayList contente tutti i cittadini */
     public ArrayList<Cittadino> popolazione;
     
+    public ArrayList<Cittadino> popolazioneViva;
+    
     /**Numero delle aziende. Derivato dal numro dei citadini in rapporto 10:1*/
     private int numAziende;
     /**ArrayList contente tutte le aziende*/
     public ArrayList<Azienda> aziende;
+    
+    public ArrayList<Azienda> aziendeVive;
     
     /**Stato interno alla Nazione*/
     public Stato stato;
@@ -33,23 +37,27 @@ public class Nazione {
     public Nazione()
     {
         //***********Costruisco la popolazione ************
-        numPopolazione = 1000000;
+        numPopolazione = 100;
         popolazione = new ArrayList<>();
+        popolazioneViva = new ArrayList<>();
         
         for(int i=0; i<=numPopolazione; i++)
         {
             Cittadino nuovo = new Cittadino(i);
             popolazione.add(nuovo);
+            popolazioneViva.add(nuovo);
         }
         
         //*******Costruisco le aziende *********
         numAziende = numPopolazione/10;
         aziende = new ArrayList<>();
+        aziendeVive = new ArrayList<>();
         
         for(int i=0; i<=numAziende; i++)
         {
             Azienda nuovo = new Azienda(i);
             aziende.add(nuovo);
+            aziendeVive.add(nuovo);
         }
 
         // *****Costruisco lo Stato ******

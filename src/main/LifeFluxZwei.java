@@ -1,4 +1,6 @@
-package lifefluxzwei;
+package main;
+
+import lifefluxzwei.Nazione;
 
 
 
@@ -23,40 +25,32 @@ public class LifeFluxZwei {
     public LifeFluxZwei() 
     {
         Nazione italia = new Nazione();
-                
-        int anni=italia.popolazione.get(1).ritornaTempo();
-        boolean vita = true;
+        //TODO: fix     
+        int anni = 100;
+        //boolean vita = true;
         System.out.println("Tempo iniziale: " + anni); //Debug
         
         //Ciclo che continua SE: c'è ancora tempo per i cittadini, SE almeno un cittadino è vivo e SE almeno
         //un azienda è aperta!
-        for(int j=0; j<anni && vita==true; j++)
+        for(int j=0; j<anni && !italia.testMorte(); j++)
         {
-            if (italia.testMorteNazionale()==true || italia.testFallimentoNazionale()==true)
-            {
-                vita=false;
-            }
-
-            if(vita==true)
-            {
                 //Faccio vivere i cittadini
                 for(int i=0; i<italia.popolazione.size(); i++)
                 {
-                    if(italia.testMorte()==false)
+                    if (!italia.testMorte())
                         italia.popolazione.get(i).vivi(italia.popolazione, italia.aziende);
                 }
 
                 //Faccio lavorare le aziende
                 for(int i=0; i<italia.aziende.size(); i++)
                 {
-                    if(italia.testMorte()==false)
+                    if (!italia.testMorte())
                         italia.aziende.get(i).funziona(italia.stato);
                 }
 
                 //Gestisco lo stato
-                if(italia.testMorte()==false)
-                    italia.stato.funziona(italia.popolazione);
-            }            
+                if (!italia.testMorte())
+                    italia.stato.funziona(italia.popolazione);           
         }
 
         italia.stampaCittadini();

@@ -73,28 +73,29 @@ public class Azienda extends Entita{
     public void funziona(Stato stato)
     {
       double random = random();
-      if(random<=0.5)
+      if(random <= 0.5)
         produci();
       else
         vendi(stato);
   
     }
     
-    /**La funzione produci trasforma ore-lavoro, salvate nella differenzaTempo in servizi, guadagnate dall'ultima vendita
-     * 
+    /**La funzione produci trasforma ore-lavoro, salvate nella differenzaTempo in servizi, guadagnate dall'ultima vendita, 
+     * se l'azienda ha avuto cittadini che hanno lavorato dall'ultima volta che ha prodotto servizi
      */
     private void produci()
     {
        if(fallita==false)
        {
          
-         if(differenzaTempo<=0)
-             differenzaTempo=1;
+         if(differenzaTempo>0)
+         { 
          
            sommaTempo(-differenzaTempo);
            sommaServizi(differenzaTempo*2);
            differenzaServizi+=2*differenzaTempo;  
            differenzaTempo=0;
+         }
        }
     }
     
@@ -107,9 +108,8 @@ public class Azienda extends Entita{
         if (fallita==false)
         {
             
-            if(differenzaServizi<=0)
-                differenzaServizi=1;
-            
+            if(differenzaServizi>0)
+            {
             sommaServizi(-differenzaServizi);
             sommaSoldi(differenzaServizi);
             sommaTempo(-1);
@@ -118,6 +118,7 @@ public class Azienda extends Entita{
             stato.sommaServizi(differenzaServizi);
             
             differenzaServizi=0;
+            }
         }
     }
        
@@ -136,6 +137,7 @@ public class Azienda extends Entita{
     @Override
     public String toString()
     {
-        return ( "Tempo " +ritornaTempo() + ", Soldi " + ritornaSoldi() + ", Servizi " + ritornaServizi() + ", Felicità " + ritornaFelicità());
+        return ( "Tempo " +ritornaTempo() + ", Soldi " + ritornaSoldi() + ", Servizi " + ritornaServizi() + ", Felicità " + ritornaFelicità() +
+                " Difftempo: " + differenzaTempo + " Diffserv: " + differenzaServizi);
     }
 }
